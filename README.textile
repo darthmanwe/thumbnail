@@ -10,8 +10,7 @@ First install ImageMagick then:
 
 or put this in Gemfile:
 
-<pre><code>
-gem 'thumbnail', :git => 'git@github.com:christianhellsten/thumbnail.git'
+<pre><code>gem 'thumbnail', :git => 'git@github.com:christianhellsten/thumbnail.git'
 </code></pre>
 
 h2. Usage
