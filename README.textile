@@ -1,0 +1,75 @@
+h1. Ruby Thumbnail Generator
+
+Simple thumbnail generator written in Ruby.
+
+h2. Install
+
+First install ImageMagick then:
+<pre>
+  <code>
+gem install thumbnail
+  </code>
+</pre>
+
+h2. Usage
+
+Create a PNG thumbnail from a JPG cut to fit the given dimensions:
+<pre>
+  <code>
+Thumbnail.create(
+  :method => :cut_to_fit,
+  :in => 'test/images/image.jpg', 
+  :out => 'tmp/images/image.png',
+  :width => 102,
+  :height => 103
+)
+  </code>
+</pre>
+
+
+h2. Parameters
+
+|_. Parameter |_. Description |_. Example |
+| method | One of the supported methods of generating thumbnails, or your own method. | cut_to_fit, pad_to_fit |
+| in | Path of image | image.jpg |
+| out | Path of thumbnail | image.png, image.gif, image.jpg |
+| width | Width of thumbnail | 100 |
+| height | Height of thumbnail | 100 |
+
+h2. Extending
+
+Add your own thumbnail generators simply by defining them:
+<pre>
+  <code>
+module Thumbnail
+  module Methods
+    class << self
+      #
+      # Creates a custom thumbnail.
+      #
+      def vignette(options)
+        gravity = options.gravity? ? options.gravity : 'center'
+        %Q{-thumbnail #{options.width}x#{options.height}> \
+           -gravity #{options.gravity} \
+           -unsharp 0x.5 \
+           -alpha set \
+           -background none \
+           -vignette 0x4 \
+           -extent #{options.width}x#{options.height} \
+           -format png}
+      end
+  </code>
+</pre>
+
+Then use them:
+<pre>
+  <code>
+Thumbnail.create(
+  :method => :vignette,
+  :in => 'test/images/image.jpg', 
+  :out => 'tmp/images/image.png',
+  :width => 102,
+  :height => 103
+)
+  </code>
+</pre>

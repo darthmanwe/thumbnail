@@ -37,30 +37,31 @@ module Thumbnail
       status, stdout = execute(cmd)
       config.out
     end
-    #
-    # Execute a command
-    #
-    def execute(cmd)
-      pid, stdin, stdout, stderr = Open4::popen4("#{cmd} 2>&1") # Redirect stderr to stdout
-      ignored, status = Process::waitpid2(pid)
-      raise ImageMagickError, "'#{cmd.gsub(/\s+/, ' ')}' exited with status #{status}. Details:\n\n#{stdout}" if status != 0
-      [status, stdout.read.strip]
-    end
-    #
-    # Create a directory
-    #
-    def make_path(path)
-      dir = File.dirname(path)
-      FileUtils.mkdir_p(dir)
-      path
-    end
-    #
-    # Prints valid methods and raises and error
-    #
-    def raise_unknown_method(method)
-      valid = Methods.methods(false).sort
-      message = "Unknown method '#{method}'. Valid methods are #{valid.join(', ')}."
-      raise InvalidMethod, message
-    end
+    protected
+      #
+      # Execute a command
+      #
+      def execute(cmd)
+        pid, stdin, stdout, stderr = Open4::popen4("#{cmd} 2>&1") # Redirect stderr to stdout
+        ignored, status = Process::waitpid2(pid)
+        raise ImageMagickError, "'#{cmd.gsub(/\s+/, ' ')}' exited with status #{status}. Details:\n\n#{stdout}" if status != 0
+        [status, stdout.read.strip]
+      end
+      #
+      # Create a directory
+      #
+      def make_path(path)
+        dir = File.dirname(path)
+        FileUtils.mkdir_p(dir)
+        path
+      end
+      #
+      # Prints valid methods and raises an error
+      #
+      def raise_unknown_method(method)
+        valid = Methods.methods(false).sort
+        message = "Unknown method '#{method}'. Valid methods are #{valid.join(', ')}."
+        raise InvalidMethod, message
+      end
   end
 end

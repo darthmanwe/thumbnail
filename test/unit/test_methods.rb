@@ -1,6 +1,16 @@
 require 'test_helper'
 
 class TestMethods < Test::Unit::TestCase
+  def test_gif
+    assert_equal "tmp/images/image.gif", Thumbnail.create(
+      :in => 'test/images/image.jpg', 
+      :out => 'tmp/images/image.gif',
+      :width => 202,
+      :height => 203
+    )
+    meta = Thumbnail.identify('tmp/images/image.gif')
+    assert_equal({:height=>203, :format=>:gif, :width=>202, :depth=>8}, meta)
+  end
   def test_pad_to_fit
     assert_equal "tmp/images/image.png", Thumbnail.create(
       :method => :pad_to_fit,
@@ -12,7 +22,6 @@ class TestMethods < Test::Unit::TestCase
     meta = Thumbnail.identify('tmp/images/image.png')
     assert_equal({:height=>203, :format=>:png, :width=>202, :depth=>8}, meta)
   end
-
   def test_cut_to_fit
     assert_equal "tmp/images/image.png", Thumbnail.create(
       :method => :cut_to_fit,
