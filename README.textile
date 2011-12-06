@@ -59,3 +59,5 @@ Thumbnail.create(
   :height => 103
 )
 </code></pre>
+
+Read the "ImageMagick documentation":http://www.imagemagick.org/Usage/thumbnails/
