@@ -5,17 +5,14 @@ Simple thumbnail generator written in Ruby.
 h2. Install
 
 First install ImageMagick then:
-<pre>
-  <code>
+<pre><code>
 gem install thumbnail
-  </code>
-</pre>
+</code></pre>
 
 h2. Usage
 
 Create a PNG thumbnail from a JPG cut to fit the given dimensions:
-<pre>
-  <code>
+<pre><code>
 Thumbnail.create(
   :method => :cut_to_fit,
   :in => 'test/images/image.jpg', 
@@ -23,8 +20,7 @@ Thumbnail.create(
   :width => 102,
   :height => 103
 )
-  </code>
-</pre>
+</code></pre>
 
 
 h2. Parameters
@@ -39,8 +35,7 @@ h2. Parameters
 h2. Extending
 
 Add your own thumbnail generators simply by defining them:
-<pre>
-  <code>
+<pre><code>
 module Thumbnail
   module Methods
     class << self
@@ -58,12 +53,10 @@ module Thumbnail
            -extent #{options.width}x#{options.height} \
            -format png}
       end
-  </code>
-</pre>
+</code></pre>
 
 Then use them:
-<pre>
-  <code>
+<pre><code>
 Thumbnail.create(
   :method => :vignette,
   :in => 'test/images/image.jpg', 
@@ -71,5 +64,4 @@ Thumbnail.create(
   :width => 102,
   :height => 103
 )
-  </code>
-</pre>
+</code></pre>
