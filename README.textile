@@ -56,8 +56,7 @@ end
 </code></pre>
 
 Then use them:
-<pre><code>
-Thumbnail.create(
+<pre><code>Thumbnail.create(
   :method => :vignette,
   :in => 'test/images/image.jpg', 
   :out => 'tmp/images/image.png',
