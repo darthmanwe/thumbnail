@@ -10,7 +10,7 @@ First install ImageMagick then:
 
 h2. Usage
 
-Create a PNG thumbnail from a JPG cut to fit the given dimensions:
+Create a PNG thumbnail and cut the thumbnail to fit the given dimensions:
 <pre><code>Thumbnail.create(
   :method => :cut_to_fit,
   :in => 'test/images/image.jpg', 
