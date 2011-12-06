@@ -28,6 +28,7 @@ h2. Parameters
 | out | Path of thumbnail | image.png, image.gif, image.jpg |
 | width | Width of thumbnail | 100 |
 | height | Height of thumbnail | 100 |
+| cmd | Path to "convert" command | /usr/bin/convert |
 
 h2. Extending
 
