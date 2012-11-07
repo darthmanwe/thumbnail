@@ -1,6 +1,6 @@
 h1. Ruby Thumbnail Generator
 
-Simple thumbnail generator written in Ruby.
+Thumbnail generator for Ruby applications.
 
 h2. Install
 
@@ -10,7 +10,7 @@ First install ImageMagick then:
 
 or put this in Gemfile:
 
-<pre><code>gem 'thumbnail', :git => 'git@github.com:christianhellsten/thumbnail.git'
+<pre><code>gem 'thumbnail', :git => 'git://github.com/christianhellsten/thumbnail.git'
 </code></pre>
 
 h2. Usage
