@@ -13,6 +13,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "ruby-debug"
   gem.add_development_dependency "guard-test"
   gem.add_dependency "hashr"
+  gem.add_dependency "smusher"
   gem.add_dependency "open4"
 
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }

@@ -24,7 +24,6 @@ Create a PNG thumbnail and cut the thumbnail to fit the given dimensions:
 )
 </code></pre>
 
-
 h2. Parameters
 
 |_. Parameter |_. Description |_. Example |
@@ -34,6 +33,7 @@ h2. Parameters
 | width | Width of thumbnail | 100 |
 | height | Height of thumbnail | 100 |
 | cmd | Path to "convert" command | /usr/bin/convert |
+| smush | Smush PNG or not? | Default is true |
 
 h2. Extending
 

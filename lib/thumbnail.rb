@@ -28,13 +28,14 @@ module Thumbnail
     # Create a thumbnail
     #
     def create(options={})
-      defaults = { :method => 'cut_to_fit', :gravity => 'center', :cmd => 'convert' }
+      defaults = { :method => 'cut_to_fit', :gravity => 'center', :cmd => 'convert', :smush => true }
       config = Hashr.new(options, defaults)
       method = config[:method]
       raise_unknown_method(method) unless Methods.respond_to?(method)  
       parameters = Methods.send(method, config)
       cmd = %Q{#{config.cmd} #{config.in} #{parameters} #{make_path(config.out)}}
       status, stdout = execute(cmd)
+      Smusher.optimize_image(config.out) if config.smush
       config.out
     end
   protected
@@ -43,7 +44,7 @@ module Thumbnail
     #
     def execute(cmd)
       pid, stdin, stdout, stderr = Open4::popen4("#{cmd} 2>&1") # Redirect stderr to stdout
-      ignored, status = Process::waitpid2(pid)
+      _, status = Process::waitpid2(pid)
       raise ImageMagickError, "'#{cmd.gsub(/\s+/, ' ')}' exited with status #{status}. Details:\n\n#{stdout}" if status != 0
       [status, stdout.read.strip]
     end
