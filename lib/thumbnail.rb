@@ -28,7 +28,7 @@ module Thumbnail
     # Create a thumbnail
     #
     def create(options={})
-      defaults = { :method => 'cut_to_fit', :gravity => 'center', :cmd => 'convert', :smush => true }
+      defaults = { :method => 'cut_to_fit', :gravity => 'center', :cmd => 'convert', :smush => false }
       config = Hashr.new(options, defaults)
       method = config[:method]
       raise_unknown_method(method) unless Methods.respond_to?(method)  
