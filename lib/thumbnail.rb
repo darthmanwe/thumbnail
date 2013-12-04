@@ -33,7 +33,7 @@ module Thumbnail
       method = config[:method]
       raise_unknown_method(method) unless Methods.respond_to?(method)  
       parameters = Methods.send(method, config)
-      cmd = %Q{#{config.cmd} #{config.in} #{parameters} #{make_path(config.out)}}
+      cmd = %Q{#{config.cmd} "#{config.in}" #{parameters} "#{make_path(config.out)}"}
       status, stdout = execute(cmd)
       Smusher.optimize_image(config.out) if config.smush
       config.out
