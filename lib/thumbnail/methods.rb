@@ -14,6 +14,7 @@ module Thumbnail
            -transparent \
            -gravity #{options.gravity} \
            -unsharp 0x.5 \
+           -auto-orient \
            -extent #{options.width}x#{options.height}}
       end
       #
@@ -27,6 +28,7 @@ module Thumbnail
         %Q{-thumbnail #{options.width}x#{options.height}^ \
            -gravity #{options.gravity} \
            -unsharp 0x.5 \
+           -auto-orient \
            -extent #{options.width}x#{options.height}}
       end
     end
