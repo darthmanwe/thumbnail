@@ -4,8 +4,8 @@ require File.expand_path('../lib/thumbnail/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Christian Hellsten"]
   gem.email         = ["christian@aktagon.com"]
-  gem.description   = %q{Minimalist Ruby thumbnail generator}
-  gem.summary       = %q{Minimalist Ruby thumbnail generator}
+  gem.description   = %q{Ruby thumbnail generator}
+  gem.summary       = %q{Ruby thumbnail generator}
   gem.homepage      = ""
 
 #  gem.add_development_dependency "minitest"
