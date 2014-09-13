@@ -6,8 +6,8 @@ require "open4"
 Hashr.raise_missing_keys = true
 
 module Thumbnail
-  class ImageMagickError < Exception; end
-  class InvalidMethod < Exception; end
+  class ImageMagickError < StandardError; end
+  class InvalidMethod < StandardError; end
   class << self
     #
     # Identify the width, height, format and depth of the image.
