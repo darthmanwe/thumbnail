@@ -45,7 +45,9 @@ module Thumbnail
     def execute(cmd)
       pid, stdin, stdout, stderr = Open4::popen4("#{cmd} 2>&1") # Redirect stderr to stdout
       _, status = Process::waitpid2(pid)
-      raise ImageMagickError, "'#{cmd.gsub(/\s+/, ' ')}' exited with status #{status}. Details:\n\n#{stdout}" if status != 0
+      if status != 0
+        raise ImageMagickError, "'#{cmd.gsub(/\s+/, ' ')}' exited with status #{status}. Details:\n\n#{stdout.read}"
+      end
       [status, stdout.read.strip]
     end
     #
