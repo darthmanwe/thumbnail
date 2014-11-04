@@ -2,6 +2,8 @@ require "thumbnail/version"
 require "thumbnail/methods"
 require "hashr"
 require "open4"
+require "pathname"
+
 
 Hashr.raise_missing_keys = true
 
@@ -38,9 +40,17 @@ module Thumbnail
       Smusher.optimize_image(config.out) if config.smush
       config.out
     end
-  
+
+    #
+    # Create thumbnails of images in the specified directory.
+    #
+    # Parameters:
+    # indir - directory where images are located
+    # outdir - directory where thumbnails will be written
+    # options - same options as for Thumbnail#create
+    #
     def process_dir(indir, outdir, options)
-      Dir["#{indir}/*"].each do |file|
+      Dir["#{indir}/*.{jpg,jpeg,png,gif}"].each do |file|
         thumb = Pathname.new(file).basename
         path = "#{outdir}/#{thumb}"
         Thumbnail.create options
