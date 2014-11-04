@@ -38,6 +38,15 @@ module Thumbnail
       Smusher.optimize_image(config.out) if config.smush
       config.out
     end
+  
+    def process_dir(indir, outdir, options)
+      Dir["#{indir}/*"].each do |file|
+        thumb = Pathname.new(file).basename
+        path = "#{outdir}/#{thumb}"
+        Thumbnail.create options
+      end
+    end
+
   protected
     #
     # Execute a command
