@@ -18,10 +18,17 @@ Create a PNG thumbnail and cut the thumbnail to fit the given dimensions:
   :height => 500
 </code></pre>
 
+For every image in /tmp/images create a thumbnail and put it in /tmp/thumbs:
+<pre><code>Thumbnail.process_dir '/tmp/images', '/tmp/thumbs', { :in => 'test/images/image.jpg', 
+  :out => 'tmp/images/image.png',
+  :width => 500,
+  :height => 500 }
+</code></pre>
+
 h2. Parameters
 
 |_. Parameter |_. Description |_. Example |
-| method | One of the supported methods of generating thumbnails, or your own method. | cut_to_fit, pad_to_fit |
+| method | One of the supported methods of generating thumbnails, or your own method. | cut_to_fit (default), pad_to_fit |
 | in | Path of image | image.jpg |
 | out | Path of thumbnail | image.png, image.gif, image.jpg |
 | width | Width of thumbnail | 100 |
